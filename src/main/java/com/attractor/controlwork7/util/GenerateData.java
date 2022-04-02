@@ -43,7 +43,7 @@ public final class GenerateData {
     }
 
     public static String randomEmail() {
-        return randomPersonName() + "@" + domains.get(r.nextInt(domains.size()));
+        return randomPersonName() + domains.get(r.nextInt(domains.size()));
     }
 
     public static String randomPersonName() {
@@ -57,6 +57,16 @@ public final class GenerateData {
     public static PlaceName randomPlace() {
         return placeNames.get(r.nextInt(placeNames.size()));
     }
+
+    public static String randomPassword(){int length = 16;
+        Random r = new Random();
+        String s = r.ints(48, 122)
+                .filter(i -> (i < 57 || i > 65) && (i < 90 || i > 97))
+                .mapToObj(i -> (char) i)
+                .limit(length)
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .toString();
+    return s;}
 
     private static List<String> readStrings(Path filePath) {
         try (var lines = Files.lines(filePath)) {
