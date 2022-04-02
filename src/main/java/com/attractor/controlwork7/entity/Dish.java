@@ -21,4 +21,8 @@ public class Dish {
     private String name;
     private String type;
     private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "place_id")
+    private Place place;
 }

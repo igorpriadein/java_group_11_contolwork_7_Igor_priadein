@@ -3,7 +3,7 @@ package com.attractor.controlwork7.dto;
 import lombok.*;
 
 @Data
-@Builder(access = AccessLevel.PRIVATE)
+@Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class CustomerDTO {

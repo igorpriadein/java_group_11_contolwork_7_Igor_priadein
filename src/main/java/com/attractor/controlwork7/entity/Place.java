@@ -20,6 +20,4 @@ public class Place {
     private String name;
     private String description;
 
-    @OneToMany
-    private Set<Dish> dishes;
 }
