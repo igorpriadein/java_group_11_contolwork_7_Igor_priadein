@@ -3,6 +3,7 @@ package com.attractor.controlwork7.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Builder
@@ -18,4 +19,7 @@ public class Place {
     private Long id;
     private String name;
     private String description;
+
+    @OneToMany
+    private Set<Dish> dishes;
 }
