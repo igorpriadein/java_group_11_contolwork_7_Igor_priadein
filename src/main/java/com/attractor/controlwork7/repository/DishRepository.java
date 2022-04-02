@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DishRepository extends CrudRepository<Dish, String> {
 
-    @Query ("select * from Dish d where d.place.id = :placeId")
+    @Query ("select d from Dish d where d.place.id = :placeId")
     Slice<Dish> findByPlaceId(String placeId, Pageable pageable);
 }

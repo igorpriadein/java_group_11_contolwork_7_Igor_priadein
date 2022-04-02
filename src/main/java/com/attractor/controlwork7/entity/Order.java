@@ -1,9 +1,6 @@
 package com.attractor.controlwork7.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @AllArgsConstructor
 @Entity
 @Table(name= "orders")
@@ -19,7 +16,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -27,7 +24,11 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "dish_id")
-    private Dish orderedDish;
+    private Dish dish;
+
+    @ManyToOne
+    @JoinColumn(name = "place_id")
+    private Place place;
 
     private LocalDateTime dateOfOrder;
 }
