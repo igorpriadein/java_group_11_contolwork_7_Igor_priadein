@@ -7,6 +7,8 @@ import com.attractor.controlwork7.entity.Place;
 import com.attractor.controlwork7.repository.CustomerRepository;
 import com.attractor.controlwork7.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,8 +19,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
 
-    public OrderDTO addOrder(OrderDTO orderDTO, String userId){
-        var customer = customerRepository.findById(userId).orElseThrow();
+    public OrderDTO addOrder(OrderDTO orderDTO, String customerId){
+        var customer = customerRepository.findById(customerId).orElseThrow();
         var order = Order.builder()
                 .id(orderDTO.getId())
                 .dateOfOrder(LocalDateTime.now())
@@ -28,6 +30,10 @@ public class OrderService {
                 .build();
         orderRepository.save(order);
         return OrderDTO.from(order);
+    }
 
+    public Slice<OrderDTO> findOrders(String customerId, Pageable pageable){
+        var slice = orderRepository.findByCustomerId(customerId, pageable);
+        return slice.map(OrderDTO::from);
     }
 }
