@@ -6,10 +6,7 @@ import com.attractor.controlwork7.service.DishService;
 import com.attractor.controlwork7.service.PlaceService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/places")
@@ -29,7 +26,7 @@ public class PlaceController {
     }
 
     @GetMapping("{placeId}/dishes")
-    public Slice<DishDTO> findDishes(@PathVariable String placeId, Pageable pageable){
+    public Slice<DishDTO> findDishes(@RequestParam String placeId, Pageable pageable){
         return dishService.findDishes(placeId, pageable);
     }
 }

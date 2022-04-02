@@ -1,9 +1,6 @@
 package com.attractor.controlwork7.util;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,6 +33,7 @@ public final class GenerateData {
     private static List<String> personNames;
     private static List<DishName> dishNames;
     private static List<PlaceName> placeNames;
+
 
     static {
         personNames = readStrings(Paths.get("data", "list-person"));
